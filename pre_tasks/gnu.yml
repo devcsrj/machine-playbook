@@ -1,12 +1,13 @@
 ---
-- name: Install 'make'
-  pacman:
-    name: make
+- name: Install 'build-essential'
+  package:
+    name: build-essential
     state: present
   become: yes
+  when: ansible_distribution != 'Arch Linux'
 
-- name: Install 'gcc'
-  pacman:
-    name: gcc
+- name: Install 'base-devel' (arch)
+  package:
+    name: base-devel
     state: present
-  become: yes
+  when: ansible_distribution == 'Arch Linux'
