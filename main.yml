@@ -12,7 +12,6 @@
     - include_tasks: tasks/docker.yml
     - include_tasks: tasks/k8.yml
     - include_tasks: tasks/extras.yml
-    - include_tasks: tasks/vscode.yml
   post_tasks:
     - include_tasks: post_tasks/nvm.yml
     - include_tasks: post_tasks/sdkman.yml
@@ -22,7 +21,6 @@
     - vars/nvm.yml
     - vars/pip.yml
     - vars/sdkman.yml
-    - vars/vscode.yml
     - vars/zsh.yml
   roles:
     - role: zsh
