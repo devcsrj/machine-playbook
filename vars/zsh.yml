@@ -1,0 +1,31 @@
+---
+# https://github.com/viasite-ansible/ansible-role-zsh
+
+zsh_antigen_theme: "romkatv/powerlevel10k powerlevel10k"
+zsh_antigen_bundles:
+  - { name: command-not-found, when: "{{ ansible_os_family != 'Darwin' }}" } # too slow on OSX
+  - { name: brew, command: brew, when: "{{ ansible_os_family == 'Darwin' }}" }
+  - { name: docker, command: docker }
+  - { name: docker-compose, command: docker-compose }
+  - fancy-ctrl-z
+  - git-extras
+  - gnu-utils
+  - { name: helm, command: helm }
+  - { name: httpie, command: http }
+  - { name: go, command: go }
+  - { name: pip, command: pip }
+  - { name: systemd, command: systemctl }
+  - python
+  - { name: tmux, command: tmux }
+  - zsh_reload
+
+  # on zsh 4.3.10 autosuggestions breaks multiline commands with \
+  - { name: zsh-users/zsh-autosuggestions, when: "{{ zsh_version is version_compare('5.0', '>=') }}" }
+  - popstas/zsh-command-time
+  - { name: unixorn/autoupdate-antigen.zshplugin, when: "{{ zsh_update_interval > 0 }}" }
+  - urbainvaes/fzf-marks # replaces jump plugin, mark, jump and Ctrl+G
+  - "{{ fzf_widgets }}"
+  # must be last, don't work on zsh < 4.3.17
+  #- { name: zsh-users/zsh-syntax-highlighting, when: "{{ zsh_version | default(false) is version_compare('4.3.17', '>=') }}" }
+  # bug with text paste in fast-syntax-highlighting v1.21, see https://github.com/zdharma/fast-syntax-highlighting/issues/30
+  - { name: zdharma/fast-syntax-highlighting@v1.2, when: "{{ zsh_version is version_compare('4.3.17', '>=') }}" }

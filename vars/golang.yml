@@ -1,0 +1,18 @@
+---
+# https://github.com/fubarhouse/ansible-role-golang
+
+go_version: 1.13.5
+go_get:
+  - name: gotop
+    url: github.com/cjbassi/gotop
+  - name: lazydocker
+    url: github.com/jesseduffield/lazydocker
+
+build_go_from_source: true
+install_go_bootstrap: true
+golang_shell_profile: "{{ ansible_user_dir }}/.zshrc.local"
+
+GOPATH: "{{ ansible_user_dir }}/.go"
+GO111MODULE: "off"
+GOOS: "{{ ansible_system }}"
+GOARCH: "{{ ansible_architecture }}"

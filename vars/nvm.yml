@@ -1,0 +1,8 @@
+---
+# https://github.com/morgangraphics/ansible-role-nvm
+
+nodejs_version: "v12.14.1"
+nvm_profile: ".bashrc"
+nvm_commands:
+  - "nvm alias default {{ nodejs_version }}"
+  - "nvm exec default npm install -g fx"

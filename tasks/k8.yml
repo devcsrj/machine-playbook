@@ -1,0 +1,38 @@
+---
+- name: Install 'microk8s'
+  snap:
+    name: microk8s
+    classic: yes
+    state: present
+  become: yes
+
+- name: Ensure group 'microk8s' exists
+  group:
+    name: microk8s
+    state: present
+  become: yes
+
+- name: Set {{ ansible_user_id }} under 'microk8s' group
+  user:
+    name: "{{ ansible_user_id }}"
+    group: "{{ ansible_real_group_id | quote }}"
+    groups: microk8s
+    append: yes
+  become: yes
+
+- name: Alias 'microk8.kubectl' in .zshrc.local
+  lineinfile:
+    path: "{{ ansible_user_dir }}/.zshrc.local"
+    regexp: '^alias kubectl='
+    line: "alias kubectl='microk8s.kubectl'"
+
+- name: Disable microk8s autostart
+  shell: "snap stop --disable microk8s"
+  become: yes
+
+- name: Install 'helm'
+  snap:
+    name: helm
+    classic: yes
+    state: present
+  become: yes

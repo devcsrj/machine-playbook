@@ -1,0 +1,5 @@
+---
+- name: Ensure '.zshr.local' exists
+  file:
+    path: "{{ ansible_user_dir }}/.zshrc.local"
+    state: touch

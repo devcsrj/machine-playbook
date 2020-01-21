@@ -1,0 +1,34 @@
+---
+# devcsrj/machine - My complete development setup
+
+- hosts: devmachine
+  pre_tasks:
+    - include_tasks: pre_tasks/gnu.yml
+    - include_tasks: pre_tasks/python.yml
+    - include_tasks: pre_tasks/snap.yml
+    - include_tasks: pre_tasks/sdkman.yml
+    - include_tasks: pre_tasks/zsh.yml
+  tasks:
+    - include_tasks: tasks/docker.yml
+    - include_tasks: tasks/k8.yml
+    - include_tasks: tasks/extras.yml
+    - include_tasks: tasks/vscode.yml
+  post_tasks:
+    - include_tasks: post_tasks/nvm.yml
+    - include_tasks: post_tasks/sdkman.yml
+  vars_files:
+    - vars/golang.yml
+    - vars/intellij.yml
+    - vars/nvm.yml
+    - vars/pip.yml
+    - vars/sdkman.yml
+    - vars/vscode.yml
+    - vars/zsh.yml
+  roles:
+    - role: zsh
+    - role: bat
+    - role: sdkman
+    - { role: golang, become: yes }
+    - { role: pip, become: yes }
+    - role: node
+    - role: intellij

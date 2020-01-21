@@ -1,0 +1,12 @@
+---
+- name: Install 'make'
+  pacman:
+    name: make
+    state: present
+  become: yes
+
+- name: Install 'gcc'
+  pacman:
+    name: gcc
+    state: present
+  become: yes

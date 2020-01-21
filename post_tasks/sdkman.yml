@@ -1,0 +1,11 @@
+---
+- name: Persist SDKMAN environment vars on .zshrc.local
+  blockinfile:
+    block: |
+      export SDKMAN_DIR="$HOME/.sdkman"
+      [[ -s "${SDKMAN_DIR}/bin/sdkman-init.sh" ]] && source "${SDKMAN_DIR}/bin/sdkman-init.sh"
+    create: yes
+    marker_begin: "devcsrj/machine::sdkman START"
+    marker_end: "devcsrj/machine::sdkman END"
+    mode: 0644
+    path: "{{ ansible_user_dir }}/.zshrc.local"

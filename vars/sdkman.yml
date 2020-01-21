@@ -1,0 +1,18 @@
+---
+# https://github.com/Comcast/ansible-sdkman
+
+sdkman_install_packages:
+  - { candidate: "java", version: "19.2.1-grl" }
+  - { candidate: "gradle", version: "5.6.4" }
+  - { candidate: "maven", version: "3.6.3" }
+sdk_defaults:
+  java: "19.2.1-grl"
+  gradle: "5.6.4"
+  maven: "3.6.3"
+sdkman_flush_caches_before:
+  - temp
+sdkman_flush_caches_after:
+  - archives
+  - broadcast
+  - candidates
+  - temp

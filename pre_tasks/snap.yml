@@ -1,0 +1,10 @@
+---
+- name: Persist snap environment vars on .zshrc.local
+  blockinfile:
+    block: |
+      export PATH=$PATH:/snap/bin
+    create: yes
+    marker_begin: "devcsrj/machine::snap START"
+    marker_end: "devcsrj/machine::snap END"
+    mode: 0644
+    path: "{{ ansible_user_dir }}/.zshrc.local"

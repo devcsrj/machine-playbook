@@ -1,0 +1,8 @@
+---
+# https://github.com/geerlingguy/ansible-role-pip
+
+pip_install_packages:
+  - name: docker
+    state: present
+  - name: httpie
+    state: present

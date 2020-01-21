@@ -1,0 +1,25 @@
+---
+- name: Install 'docker'
+  snap:
+    name: docker
+    classic: yes
+    state: present
+  become: yes
+
+- name: Ensure group 'docker' exists
+  group:
+    name: docker
+    state: present
+  become: yes
+
+- name: "Set {{ ansible_user_id }} under 'docker' group"
+  user:
+    name: "{{ ansible_user_id }}"
+    group: "{{ ansible_real_group_id | quote }}"
+    groups: docker
+    append: yes
+  become: yes
+
+- name: Disable docker autostart
+  shell: "snap stop --disable docker"
+  become: yes

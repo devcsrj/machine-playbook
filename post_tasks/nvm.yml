@@ -1,0 +1,11 @@
+---
+- name: Persist nvm environment vars on .zshrc.local
+  blockinfile:
+    block: |
+      export NVM_DIR="$HOME/.nvm"
+      [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
+    create: yes
+    marker_begin: "devcsrj/machine::nvm START"
+    marker_end: "devcsrj/machine::nvm END"
+    mode: 0644
+    path: "{{ ansible_user_dir }}/.zshrc.local"

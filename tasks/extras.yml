@@ -1,0 +1,12 @@
+---
+- name: Install 'vim'
+  pacman:
+    name: vim
+    state: present
+  become: yes
+
+- name: Install 'croc'
+  pacman:
+    name: croc
+    state: present
+  become: yes
