@@ -1,7 +1,7 @@
 ---
 # devcsrj/machine - My complete development setup
 
-- hosts: devmachine
+- hosts: all
   pre_tasks:
     - include_tasks: pre_tasks/gnu.yml
     - include_tasks: pre_tasks/python.yml
@@ -23,7 +23,7 @@
     - vars/sdkman.yml
     - vars/zsh.yml
   roles:
-    - role: zsh
+    - { role: zsh, become: yes }
     - role: bat
     - role: sdkman
     - { role: golang, become: yes }
