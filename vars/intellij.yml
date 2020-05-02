@@ -1,5 +1,6 @@
 ---
 # https://github.com/gantsign/ansible-role-intellij
 
-intellij_version: '2019.3.1'
+intellij_version: '2020.1.1'
 intellij_edition: ultimate
+intellij_redis_sha256sum: ca485decf8b91549a1c8e20309a7a7b6a7e032ff96e10fde2ff5dbae9e0108e3
