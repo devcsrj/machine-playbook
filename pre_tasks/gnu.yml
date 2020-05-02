@@ -4,10 +4,11 @@
     name: build-essential
     state: present
   become: yes
-  when: ansible_distribution != 'Arch Linux'
+  when: ansible_distribution != 'Archlinux'
 
 - name: Install 'base-devel' (arch)
   package:
     name: base-devel
     state: present
-  when: ansible_distribution == 'Arch Linux'
+  become: yes
+  when: ansible_distribution == 'Archlinux'
